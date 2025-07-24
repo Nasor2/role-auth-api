@@ -222,4 +222,4 @@ This is the easiest way to spin up the application along with its PostgreSQL dat
 > **ADMIN Access to User Data:** Users with the `ADMIN` role have full access to view and modify any user's details, including changing roles. Use `ADMIN` credentials with caution.
 
 > [!IMPORTANT]
-> **JWT Secret Key:** The secret key (`DB_JWT_SECRET_KEY`) used to sign JWT tokens must be **highly secure** and kept **confidential**. Never expose it in source code or public logs. A weak or compromised key would nullify token security.
+> **JWT Secret Key:** The secret key (`DB_JWT_SECRET_KEY`) used to sign JWT tokens must be **highly secure** and kept **confidential** (atleast 256 bits of lenght). Never expose it in source code or public logs. A weak or compromised key would nullify token security.
