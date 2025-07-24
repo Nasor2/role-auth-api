@@ -198,9 +198,28 @@ This is the easiest way to spin up the application along with its PostgreSQL dat
 
 ---
 
-> [!NOTE]
+## 📝 Additional Notes
 
-> * **Initial ADMIN User:** Upon the first startup of the application, if the database is empty, an `ADMIN` user will be automatically created using the credentials defined in the `ADMIN_PASSWORD` environment variable. This facilitates initial setup and access to administrative endpoints.
-> * **JWT and Refresh Tokens:**
-    * The `accessToken` has a short validity (1 hour by default) and is used to access protected API resources.
-    * The `refreshToken` has a longer validity (7 days by default) and is used to obtain new `accessToken`/`refreshToken` pairs without needing to re-authenticate with credentials.
+> [!NOTE]
+> **Initial ADMIN User:** Upon the first startup of the application, if the database is empty, an `ADMIN` user will be automatically created using the credentials defined in the `ADMIN_PASSWORD` environment variable. This facilitates initial setup and access to administrative endpoints.
+
+> [!NOTE]
+> **JWT and Refresh Tokens:**
+> * The `accessToken` has a short validity (1 hour by default) and is used to access protected API resources.
+> * The `refreshToken` has a longer validity (7 days by default) and is used to obtain new `accessToken`/`refreshToken` pairs without needing to re-authenticate with credentials.
+
+---
+
+## ⚠️ Important Considerations / Restrictions
+
+> [!IMPORTANT]
+> **Fixed Roles:** This API currently supports only two fixed roles: `ADMIN` and `USER`. There is no endpoint to dynamically create or modify roles. Role management is limited to assigning these two roles to existing users.
+
+> [!IMPORTANT]
+> **No Password Reset:** The API does not implement a password recovery mechanism (e.g., "forgot password"). In case of a forgotten password, manual database intervention or the creation of a new user would be required.
+
+> [!IMPORTANT]
+> **ADMIN Access to User Data:** Users with the `ADMIN` role have full access to view and modify any user's details, including changing roles. Use `ADMIN` credentials with caution.
+
+> [!IMPORTANT]
+> **JWT Secret Key:** The secret key (`DB_JWT_SECRET_KEY`) used to sign JWT tokens must be **highly secure** and kept **confidential**. Never expose it in source code or public logs. A weak or compromised key would nullify token security.
